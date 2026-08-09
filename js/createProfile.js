@@ -22,7 +22,7 @@ export const PREDEFINED_TRAITS = [
   { key: 'energetic', label: 'Energetic', icon: 'fa-solid fa-bolt' }
 ];
 
-const MAX_TRAITS = 10;
+const MAX_TRAITS = 15;
 const MIN_TRAITS = 3;
 let selectedTraits = new Set();
 
