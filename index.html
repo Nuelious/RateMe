@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RateMe — Create Your Profile</title>
+
+<link id="theme-stylesheet" rel="stylesheet" href="css/theme_dark.css">
+<link id="card-stylesheet" rel="stylesheet" href="css/card_default.css">
+<link rel="stylesheet" href="css/settings.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<header class="app-header">
+  <div class="app-header-inner">
+    <div class="app-logo">
+      <i class="fa-solid fa-star"></i>
+      <span>RateMe</span>
+    </div>
+    <div class="header-actions">
+      <button id="logout-btn" class="btn btn-ghost hidden" type="button">
+        <i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span>
+      </button>
+      <button id="settings-toggle" class="icon-btn" type="button" aria-label="Settings">
+        <i class="fa-solid fa-gear"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="page-container">
+
+  <!-- ===== AUTH SECTION ===== -->
+  <section id="auth-section" class="auth-section">
+    <div class="auth-hero">
+      <h1><i class="fa-solid fa-star"></i> RateMe</h1>
+      <p>Create your personality profile and see how your friends really rate you.</p>
+    </div>
+
+    <div class="auth-card themed-card">
+      <form id="login-form" class="auth-form">
+        <h2>Log In</h2>
+        <label for="login-email">Email</label>
+        <input type="email" id="login-email" placeholder="you@example.com" autocomplete="email" required>
+
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password" required>
+
+        <button type="submit" class="btn btn-primary btn-block">
+          <i class="fa-solid fa-right-to-bracket"></i> Log In
+        </button>
+
+        <p class="auth-switch">
+          Don't have an account?
+          <button type="button" id="show-signup" class="link-btn">Sign up</button>
+        </p>
+      </form>
+
+      <form id="signup-form" class="auth-form hidden">
+        <h2>Create Account</h2>
+        <label for="signup-email">Email</label>
+        <input type="email" id="signup-email" placeholder="you@example.com" autocomplete="email" required>
+
+        <label for="signup-username">Username / Nickname</label>
+        <input type="text" id="signup-username" placeholder="e.g. StarGazer" autocomplete="username" required maxlength="20">
+
+        <label for="signup-password">Password</label>
+        <input type="password" id="signup-password" placeholder="At least 6 characters" autocomplete="new-password" required>
+
+        <label for="signup-password-confirm">Confirm Password</label>
+        <input type="password" id="signup-password-confirm" placeholder="Repeat password" autocomplete="new-password" required>
+
+        <button type="submit" class="btn btn-primary btn-block">
+          <i class="fa-solid fa-user-plus"></i> Sign Up
+        </button>
+
+        <p class="auth-switch">
+          Already have an account?
+          <button type="button" id="show-login" class="link-btn">Log in</button>
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== CREATE PROFILE SECTION ===== -->
+  <section id="create-profile-section" class="create-profile-section hidden">
+    <div class="section-heading">
+      <h1><i class="fa-solid fa-id-card"></i> Build Your Profile</h1>
+      <p>Pick the traits you want friends to rate you on.</p>
+    </div>
+
+    <div class="themed-card profile-form-card">
+      <label for="profile-name-input">Your Name</label>
+      <input type="text" id="profile-name-input" placeholder="e.g. Alex Rivera" maxlength="40">
+
+      <div class="trait-section-heading">
+        <h3><i class="fa-solid fa-layer-group"></i> Choose Traits</h3>
+        <span id="trait-counter" class="trait-counter">0 / 10 selected</span>
+      </div>
+
+      <div id="trait-grid" class="trait-grid"></div>
+
+      <div class="custom-trait-input-row">
+        <input type="text" id="custom-trait-input" placeholder="Add a custom trait…" maxlength="24">
+        <button type="button" id="add-custom-trait-btn" class="btn btn-secondary">
+          <i class="fa-solid fa-plus"></i> Add
+        </button>
+      </div>
+      <div id="custom-traits-list" class="custom-traits-list"></div>
+
+      <button type="button" id="create-profile-btn" class="btn btn-primary btn-block btn-lg">
+        <i class="fa-solid fa-wand-magic-sparkles"></i> Create Profile
+      </button>
+    </div>
+  </section>
+
+  <!-- ===== ALREADY HAVE PROFILE ===== -->
+  <section id="existing-profile-section" class="existing-profile-section hidden">
+    <div class="themed-card center-card">
+      <i class="fa-solid fa-circle-check existing-profile-icon"></i>
+      <h2 id="existing-profile-name"></h2>
+      <p>You already have a profile set up.</p>
+      <a href="results.html" class="btn btn-primary btn-lg">
+        <i class="fa-solid fa-chart-simple"></i> View Your Results
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== SETTINGS PANEL ===== -->
+<div id="settings-overlay" class="settings-overlay"></div>
+<aside id="settings-panel" class="settings-panel">
+  <div class="settings-panel-header">
+    <h2><i class="fa-solid fa-gear"></i> Settings</h2>
+    <button id="settings-close" class="icon-btn" type="button" aria-label="Close settings">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <div class="settings-panel-body">
+    <div class="settings-block">
+      <h3><i class="fa-solid fa-palette"></i> Theme</h3>
+      <div id="theme-grid" class="swatch-grid theme-swatch-grid"></div>
+    </div>
+    <div class="settings-block">
+      <h3><i class="fa-solid fa-square"></i> Card Style</h3>
+      <div id="card-style-grid" class="swatch-grid card-swatch-grid"></div>
+    </div>
+    <div class="settings-block">
+      <h3><i class="fa-solid fa-globe"></i> Explore</h3>
+      <div class="nav-links">
+        <a href="leaderboard.html" class="btn btn-ghost btn-block"><i class="fa-solid fa-trophy"></i> Leaderboard</a>
+        <a href="about.html" class="btn btn-ghost btn-block"><i class="fa-solid fa-circle-info"></i> About Us</a>
+        <a href="support.html" class="btn btn-ghost btn-block"><i class="fa-solid fa-heart"></i> Support Us</a>
+        <a href="contact.html" class="btn btn-ghost btn-block"><i class="fa-solid fa-envelope"></i> Contact / Report Bug</a>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<script type="module" src="js/main-index.js"></script>
+</body>
+</html>

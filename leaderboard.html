@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RateMe — Leaderboard</title>
+
+<link id="theme-stylesheet" rel="stylesheet" href="css/theme_dark.css">
+<link id="card-stylesheet" rel="stylesheet" href="css/card_default.css">
+<link rel="stylesheet" href="css/settings.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<header class="app-header">
+  <div class="app-header-inner">
+    <div class="app-logo">
+      <i class="fa-solid fa-star"></i>
+      <span>RateMe</span>
+    </div>
+    <div class="header-actions">
+      <a href="index.html" class="icon-btn" aria-label="Home"><i class="fa-solid fa-house"></i></a>
+      <button id="settings-toggle" class="icon-btn" type="button" aria-label="Settings">
+        <i class="fa-solid fa-gear"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="page-container">
+  <div class="section-heading">
+    <h1><i class="fa-solid fa-trophy"></i> Global Leaderboard</h1>
+    <p>Users ranked by total ratings received.</p>
+  </div>
+
+  <div id="leaderboard-loading" class="state-panel">
+    <i class="fa-solid fa-spinner fa-spin"></i>
+    <p>Loading rankings…</p>
+  </div>
+
+  <div id="leaderboard-empty" class="state-panel hidden">
+    <i class="fa-solid fa-chart-simple state-icon-error"></i>
+    <p>No profiles found yet. Be the first!</p>
+    <a href="index.html" class="btn btn-primary">Create Your Profile</a>
+  </div>
+
+  <div id="leaderboard-list" class="leaderboard-list hidden"></div>
+</main>
+
+<div id="settings-overlay" class="settings-overlay"></div>
+<aside id="settings-panel" class="settings-panel">
+  <div class="settings-panel-header">
+    <h2><i class="fa-solid fa-gear"></i> Settings</h2>
+    <button id="settings-close" class="icon-btn" type="button" aria-label="Close settings">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <div class="settings-panel-body">
+    <div class="settings-block">
+      <h3><i class="fa-solid fa-palette"></i> Theme</h3>
+      <div id="theme-grid" class="swatch-grid theme-swatch-grid"></div>
+    </div>
+    <div class="settings-block">
+      <h3><i class="fa-solid fa-square"></i> Card Style</h3>
+      <div id="card-style-grid" class="swatch-grid card-swatch-grid"></div>
+    </div>
+  </div>
+</aside>
+
+<script type="module">
+import { applySavedAppearance, initSettingsPanel } from './js/settings.js';
+import { supabase } from './js/supabaseClient.js';
+
+applySavedAppearance();
+initSettingsPanel();
+
+(async () => {
+  const listEl = document.getElementById('leaderboard-list');
+  const loadingEl = document.getElementById('leaderboard-loading');
+  const emptyEl = document.getElementById('leaderboard-empty');
+
+  const { data, error } = await supabase.rpc('get_leaderboard', { limit_count: 100 });
+
+  loadingEl.classList.add('hidden');
+
+  if (error || !data || data.length === 0) {
+    emptyEl.classList.remove('hidden');
+    return;
+  }
+
+  listEl.classList.remove('hidden');
+
+  const currentUser = (await supabase.auth.getUser()).data?.user;
+
+  listEl.innerHTML = data.map((row, idx) => {
+    const rank = idx + 1;
+    const isMe = currentUser && row.id === currentUser.id;
+    let rankIcon = '';
+    if (rank === 1) rankIcon = '<i class="fa-solid fa-crown" style="color:gold"></i>';
+    else if (rank === 2) rankIcon = '<i class="fa-solid fa-medal" style="color:silver"></i>';
+    else if (rank === 3) rankIcon = '<i class="fa-solid fa-medal" style="color:#cd7f32"></i>';
+    
+    return `
+      <div class="leaderboard-row ${isMe ? 'leaderboard-me' : ''}">
+        <div class="leaderboard-rank">${rankIcon || `<span>#${rank}</span>`}</div>
+        <div class="leaderboard-user">
+          <span class="leaderboard-name">${escapeHtml(row.name || 'Anonymous')}</span>
+          <span class="leaderboard-username">@${escapeHtml(row.username || 'user')}</span>
+        </div>
+        <div class="leaderboard-score">
+          <i class="fa-solid fa-users"></i> ${row.rating_count}
+        </div>
+        <a href="rate.html?code=${row.share_code}" class="btn btn-secondary btn-sm">
+          <i class="fa-solid fa-star"></i> Rate
+        </a>
+      </div>
+    `;
+  }).join('');
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str ?? '';
+    return div.innerHTML;
+  }
+})();
+</script>
+
+<style>
+.leaderboard-list { display: flex; flex-direction: column; gap: 10px; max-width: 720px; margin: 0 auto; }
+.leaderboard-row {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--surface-color); border-radius: 14px; padding: 14px 18px;
+  border: 1px solid var(--border-color);
+}
+.leaderboard-row.leaderboard-me { border-color: var(--accent-color); box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent-color) 30%, transparent); }
+.leaderboard-rank { width: 40px; text-align: center; font-weight: 800; font-size: 1.1rem; }
+.leaderboard-user { flex: 1; display: flex; flex-direction: column; }
+.leaderboard-name { font-weight: 700; }
+.leaderboard-username { font-size: 0.8rem; color: var(--muted-text); }
+.leaderboard-score { font-weight: 700; color: var(--accent-color); margin-right: 8px; }
+</style>
+
+</body>
+</html>

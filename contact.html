@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RateMe — Contact & Report Bug</title>
+
+<link id="theme-stylesheet" rel="stylesheet" href="css/theme_dark.css">
+<link id="card-stylesheet" rel="stylesheet" href="css/card_default.css">
+<link rel="stylesheet" href="css/settings.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<header class="app-header">
+  <div class="app-header-inner">
+    <div class="app-logo">
+      <i class="fa-solid fa-star"></i>
+      <span>RateMe</span>
+    </div>
+    <div class="header-actions">
+      <a href="index.html" class="icon-btn" aria-label="Home"><i class="fa-solid fa-house"></i></a>
+      <button id="settings-toggle" class="icon-btn" type="button" aria-label="Settings">
+        <i class="fa-solid fa-gear"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="page-container">
+  <div class="section-heading">
+    <h1><i class="fa-solid fa-envelope"></i> Contact Us</h1>
+    <p>Found a bug or have feedback? We'd love to hear from you.</p>
+  </div>
+
+  <div class="themed-card" style="max-width: 640px; margin: 0 auto 20px;">
+    <h3><i class="fa-solid fa-bug"></i> Report a Bug</h3>
+    <form id="bug-form" class="contact-form">
+      <label for="bug-name">Your Name</label>
+      <input type="text" id="bug-name" placeholder="e.g. Alex" required>
+
+      <label for="bug-email">Your Email</label>
+      <input type="email" id="bug-email" placeholder="you@example.com" required>
+
+      <label for="bug-desc">Describe the Issue</label>
+      <textarea id="bug-desc" rows="5" placeholder="What happened? What did you expect?" required style="width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--border-color);background:var(--input-bg);color:var(--text-color);font-family:inherit;resize:vertical;"></textarea>
+
+      <button type="submit" class="btn btn-primary btn-block" style="margin-top:14px;">
+        <i class="fa-solid fa-paper-plane"></i> Submit Report
+      </button>
+    </form>
+  </div>
+
+  <div class="themed-card" style="max-width: 640px; margin: 0 auto 20px;">
+    <h3><i class="fa-solid fa-comment-dots"></i> General Feedback</h3>
+    <p style="color: var(--muted-text);">For feature requests, partnerships, or just saying hi:</p>
+    <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 12px;">
+      <a href="mailto:hello@RateMe.app" class="btn btn-ghost btn-block">
+        <i class="fa-solid fa-envelope"></i> hello@RateMe.app
+      </a>
+      <a href="https://twitter.com/YOUR_HANDLE" target="_blank" class="btn btn-ghost btn-block">
+        <i class="fa-brands fa-x-twitter"></i> @RateMe
+      </a>
+      <a href="https://discord.gg/YOUR_INVITE" target="_blank" class="btn btn-ghost btn-block">
+        <i class="fa-brands fa-discord"></i> Join our Discord
+      </a>
+    </div>
+  </div>
+</main>
+
+<div id="settings-overlay" class="settings-overlay"></div>
+<aside id="settings-panel" class="settings-panel">
+  <div class="settings-panel-header">
+    <h2><i class="fa-solid fa-gear"></i> Settings</h2>
+    <button id="settings-close" class="icon-btn" type="button" aria-label="Close settings">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <div class="settings-panel-body">
+    <div class="settings-block">
+      <h3><i class="fa-solid fa-palette"></i> Theme</h3>
+      <div id="theme-grid" class="swatch-grid theme-swatch-grid"></div>
+    </div>
+    <div class="settings-block">
+      <h3><i class="fa-solid fa-square"></i> Card Style</h3>
+      <div id="card-style-grid" class="swatch-grid card-swatch-grid"></div>
+    </div>
+  </div>
+</aside>
+
+<script type="module">
+import { applySavedAppearance, initSettingsPanel } from './js/settings.js';
+import { showToast } from './js/ui.js';
+
+applySavedAppearance();
+initSettingsPanel();
+
+document.getElementById('bug-form')?.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const name = document.getElementById('bug-name').value.trim();
+  const email = document.getElementById('bug-email').value.trim();
+  const desc = document.getElementById('bug-desc').value.trim();
+  
+  const subject = encodeURIComponent(`Bug Report from ${name}`);
+  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nIssue:\n${desc}`);
+  
+  window.location.href = `mailto:hello@RateMe.app?subject=${subject}&body=${body}`;
+  showToast('Opening your email client…', 'info');
+});
+</script>
+
+</body>
+</html>

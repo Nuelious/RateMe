@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RateMe — Support Us</title>
+
+<link id="theme-stylesheet" rel="stylesheet" href="css/theme_dark.css">
+<link id="card-stylesheet" rel="stylesheet" href="css/card_default.css">
+<link rel="stylesheet" href="css/settings.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<header class="app-header">
+  <div class="app-header-inner">
+    <div class="app-logo">
+      <i class="fa-solid fa-star"></i>
+      <span>RateMe</span>
+    </div>
+    <div class="header-actions">
+      <a href="index.html" class="icon-btn" aria-label="Home"><i class="fa-solid fa-house"></i></a>
+      <button id="settings-toggle" class="icon-btn" type="button" aria-label="Settings">
+        <i class="fa-solid fa-gear"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="page-container">
+  <div class="section-heading">
+    <h1><i class="fa-solid fa-heart"></i> Support RateMe</h1>
+    <p>Help us keep the lights on and build new features.</p>
+  </div>
+
+  <div class="themed-card" style="max-width: 640px; margin: 0 auto 20px; text-align: center;">
+    <i class="fa-solid fa-mug-hot" style="font-size: 3rem; color: var(--accent-color); margin-bottom: 14px;"></i>
+    <h3>Buy Us a Coffee</h3>
+    <p style="color: var(--muted-text);">RateMe is free to use. If you love it, consider supporting the creator so we can add more games, themes, and features.</p>
+    <a href="https://www.buymeacoffee.com/YOUR_LINK" target="_blank" class="btn btn-primary btn-lg" style="margin-top: 12px;">
+      <i class="fa-solid fa-heart"></i> Donate via Buy Me a Coffee
+    </a>
+  </div>
+
+  <div class="themed-card" style="max-width: 640px; margin: 0 auto 20px; text-align: center;">
+    <i class="fa-brands fa-patreon" style="font-size: 3rem; color: var(--accent-color); margin-bottom: 14px;"></i>
+    <h3>Become a Patron</h3>
+    <p style="color: var(--muted-text);">Get early access to new features and exclusive themes by becoming a monthly supporter.</p>
+    <a href="https://www.patreon.com/YOUR_LINK" target="_blank" class="btn btn-accent btn-lg" style="margin-top: 12px;">
+      <i class="fa-brands fa-patreon"></i> Join on Patreon
+    </a>
+  </div>
+
+  <div class="themed-card" style="max-width: 640px; margin: 0 auto; text-align: center;">
+    <i class="fa-brands fa-paypal" style="font-size: 3rem; color: var(--accent-color); margin-bottom: 14px;"></i>
+    <h3>One-Time Donation</h3>
+    <p style="color: var(--muted-text);">Prefer PayPal? Send a one-time tip to support development.</p>
+    <a href="https://paypal.me/YOUR_LINK" target="_blank" class="btn btn-secondary btn-lg" style="margin-top: 12px;">
+      <i class="fa-brands fa-paypal"></i> Donate via PayPal
+    </a>
+  </div>
+</main>
+
+<div id="settings-overlay" class="settings-overlay"></div>
+<aside id="settings-panel" class="settings-panel">
+  <div class="settings-panel-header">
+    <h2><i class="fa-solid fa-gear"></i> Settings</h2>
+    <button id="settings-close" class="icon-btn" type="button" aria-label="Close settings">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <div class="settings-panel-body">
+    <div class="settings-block">
+      <h3><i class="fa-solid fa-palette"></i> Theme</h3>
+      <div id="theme-grid" class="swatch-grid theme-swatch-grid"></div>
+    </div>
+    <div class="settings-block">
+      <h3><i class="fa-solid fa-square"></i> Card Style</h3>
+      <div id="card-style-grid" class="swatch-grid card-swatch-grid"></div>
+    </div>
+  </div>
+</aside>
+
+<script type="module">
+import { applySavedAppearance, initSettingsPanel } from './js/settings.js';
+applySavedAppearance();
+initSettingsPanel();
+</script>
+
+</body>
+</html>

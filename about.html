@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RateMe — About Us</title>
+
+<link id="theme-stylesheet" rel="stylesheet" href="css/theme_dark.css">
+<link id="card-stylesheet" rel="stylesheet" href="css/card_default.css">
+<link rel="stylesheet" href="css/settings.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<header class="app-header">
+  <div class="app-header-inner">
+    <div class="app-logo">
+      <i class="fa-solid fa-star"></i>
+      <span>RateMe</span>
+    </div>
+    <div class="header-actions">
+      <a href="index.html" class="icon-btn" aria-label="Home"><i class="fa-solid fa-house"></i></a>
+      <button id="settings-toggle" class="icon-btn" type="button" aria-label="Settings">
+        <i class="fa-solid fa-gear"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="page-container">
+  <div class="section-heading">
+    <h1><i class="fa-solid fa-circle-info"></i> About RateMe</h1>
+    <p>Discover how the world sees you.</p>
+  </div>
+
+  <div class="themed-card" style="max-width: 720px; margin: 0 auto 20px;">
+    <h3>What is RateMe?</h3>
+    <p>RateMe is a social personality-rating platform where you create a profile of traits you care about, share your unique link with friends, and discover how they honestly rate you. View beautiful radar charts, track your top traits, and unlock a personality trivia game once you've collected enough ratings.</p>
+  </div>
+
+  <div class="themed-card" style="max-width: 720px; margin: 0 auto 20px;">
+    <h3>How it Works</h3>
+    <ol style="line-height: 1.8; padding-left: 20px;">
+      <li><strong>Create an account</strong> with your email and username.</li>
+      <li><strong>Build your profile</strong> by selecting 3–10 traits you want feedback on.</li>
+      <li><strong>Share your link</strong> via WhatsApp, Facebook, X, or anywhere else.</li>
+      <li><strong>Watch the results</strong> come in live with charts and summaries.</li>
+      <li><strong>Unlock the game</strong> at 8 ratings and test your self-awareness!</li>
+    </ol>
+  </div>
+
+  <div class="themed-card" style="max-width: 720px; margin: 0 auto 20px;">
+    <h3>Credits</h3>
+    <p>Designed and developed with care. Built with vanilla HTML, CSS, and JavaScript powered by Supabase. Charts by Chart.js. Icons by Font Awesome.</p>
+    <p style="margin-top: 10px; color: var(--muted-text);">© 2026 RateMe. All rights reserved.</p>
+  </div>
+</main>
+
+<div id="settings-overlay" class="settings-overlay"></div>
+<aside id="settings-panel" class="settings-panel">
+  <div class="settings-panel-header">
+    <h2><i class="fa-solid fa-gear"></i> Settings</h2>
+    <button id="settings-close" class="icon-btn" type="button" aria-label="Close settings">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <div class="settings-panel-body">
+    <div class="settings-block">
+      <h3><i class="fa-solid fa-palette"></i> Theme</h3>
+      <div id="theme-grid" class="swatch-grid theme-swatch-grid"></div>
+    </div>
+    <div class="settings-block">
+      <h3><i class="fa-solid fa-square"></i> Card Style</h3>
+      <div id="card-style-grid" class="swatch-grid card-swatch-grid"></div>
+    </div>
+  </div>
+</aside>
+
+<script type="module">
+import { applySavedAppearance, initSettingsPanel } from './js/settings.js';
+applySavedAppearance();
+initSettingsPanel();
+</script>
+
+</body>
+</html>

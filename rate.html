@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RateMe — Rate a Friend</title>
+
+<link id="theme-stylesheet" rel="stylesheet" href="css/theme_dark.css">
+<link id="card-stylesheet" rel="stylesheet" href="css/card_default.css">
+<link rel="stylesheet" href="css/settings.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<header class="app-header">
+  <div class="app-header-inner">
+    <div class="app-logo">
+      <i class="fa-solid fa-star"></i>
+      <span>RateMe</span>
+    </div>
+    <div class="header-actions">
+      <button id="settings-toggle" class="icon-btn" type="button" aria-label="Settings">
+        <i class="fa-solid fa-gear"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="page-container rate-page">
+
+  <div id="rate-loading" class="state-panel">
+    <i class="fa-solid fa-spinner fa-spin"></i>
+    <p>Loading profile…</p>
+  </div>
+
+  <div id="rate-error" class="state-panel hidden">
+    <i class="fa-solid fa-triangle-exclamation state-icon-error"></i>
+    <p id="rate-error-message">Something went wrong.</p>
+    <a href="index.html" class="btn btn-primary">
+      <i class="fa-solid fa-house"></i> Go Home
+    </a>
+  </div>
+
+  <!-- AUTH GATE -->
+  <div id="rate-auth-gate" class="state-panel hidden">
+    <i class="fa-solid fa-lock state-icon-error"></i>
+    <h2>Login Required</h2>
+    <p>You need an account to submit ratings. Quick signup below:</p>
+    
+    <div class="auth-card themed-card" style="max-width:400px;margin:20px auto;text-align:left;">
+      <form id="rate-login-form" class="auth-form">
+        <h3>Log In</h3>
+        <input type="email" id="rate-login-email" placeholder="Email" required>
+        <input type="password" id="rate-login-password" placeholder="Password" required>
+        <button type="submit" class="btn btn-primary btn-block">Log In</button>
+        <p class="auth-switch">
+          No account? <button type="button" id="rate-show-signup" class="link-btn">Sign up</button>
+        </p>
+      </form>
+
+      <form id="rate-signup-form" class="auth-form hidden">
+        <h3>Sign Up</h3>
+        <input type="email" id="rate-signup-email" placeholder="Email" required>
+        <input type="text" id="rate-signup-username" placeholder="Username" required maxlength="20">
+        <input type="password" id="rate-signup-password" placeholder="Password (min 6)" required>
+        <input type="password" id="rate-signup-password-confirm" placeholder="Confirm password" required>
+        <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+        <p class="auth-switch">
+          Have an account? <button type="button" id="rate-show-login" class="link-btn">Log in</button>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <div id="rate-flow" class="rate-flow hidden">
+    <div class="rate-flow-heading">
+      <h1>Rating <span id="rate-target-name"></span></h1>
+      <div class="rate-progress-track">
+        <div id="rate-progress-bar" class="rate-progress-bar"></div>
+      </div>
+      <span id="rate-progress-label" class="rate-progress-label"></span>
+    </div>
+
+    <div id="rate-step" class="rate-step"></div>
+
+    <div id="rate-submit-section" class="rate-submit-section hidden">
+      <label class="anon-toggle-row">
+        <input type="checkbox" id="anonymous-toggle" checked>
+        <span>Rate anonymously</span>
+      </label>
+      <div id="rater-name-field" class="rater-name-field hidden">
+        <input type="text" id="rater-name-input" placeholder="Your name (shown to them)" maxlength="30">
+      </div>
+      <button id="rate-submit-btn" type="button" class="btn btn-primary btn-lg btn-block" disabled>
+        <i class="fa-solid fa-paper-plane"></i> Submit Ratings
+      </button>
+    </div>
+
+    <div class="rate-nav">
+      <button id="rate-prev-btn" type="button" class="btn btn-ghost invisible">
+        <i class="fa-solid fa-arrow-left"></i> Previous
+      </button>
+      <button id="rate-next-btn" type="button" class="btn btn-primary" disabled>
+        Next <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <div id="rate-success" class="state-panel hidden">
+    <i class="fa-solid fa-circle-check state-icon-success"></i>
+    <h2>Thanks for rating!</h2>
+    <p>Your ratings have been submitted successfully.</p>
+    <a href="index.html" class="btn btn-primary btn-lg">
+      <i class="fa-solid fa-wand-magic-sparkles"></i> Create Your Own Profile
+    </a>
+  </div>
+
+</main>
+
+<div id="settings-overlay" class="settings-overlay"></div>
+<aside id="settings-panel" class="settings-panel">
+  <div class="settings-panel-header">
+    <h2><i class="fa-solid fa-gear"></i> Settings</h2>
+    <button id="settings-close" class="icon-btn" type="button" aria-label="Close settings">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <div class="settings-panel-body">
+    <div class="settings-block">
+      <h3><i class="fa-solid fa-palette"></i> Theme</h3>
+      <div id="theme-grid" class="swatch-grid theme-swatch-grid"></div>
+    </div>
+    <div class="settings-block">
+      <h3><i class="fa-solid fa-square"></i> Card Style</h3>
+      <div id="card-style-grid" class="swatch-grid card-swatch-grid"></div>
+    </div>
+  </div>
+</aside>
+
+<script type="module" src="js/main-rate.js"></script>
+</body>
+</html>
