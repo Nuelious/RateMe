@@ -2,7 +2,7 @@
 
 A social personality-rating app: create a profile, share a link, let friends
 rate you on chosen traits, then view radar/bar charts, top traits, an
-auto-generated summary, and a personality trivia mini-game unlocked at 15+
+auto-generated summary, and a personality trivia mini-game unlocked at 8+
 ratings.
 
 Vanilla HTML/CSS/JS, Supabase backend, Chart.js, Font Awesome. No build step.
