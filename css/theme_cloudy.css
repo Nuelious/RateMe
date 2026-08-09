@@ -1,0 +1,19 @@
+/* theme_cloudy.css — cloudy theme */
+:root, [data-theme="cloudy"] {
+  --bg-color: #eef1f5;
+  --surface-color: #ffffff;
+  --surface-hover: #e3e7ee;
+  --card-bg: #ffffff;
+  --border-color: #d4dae3;
+  --text-color: #33394a;
+  --muted-text: #727c8f;
+  --accent-color: #5c7a99;
+  --accent-color-2: #8a97a8;
+  --header-bg: rgba(238,241,245,0.85);
+  --input-bg: #f2f4f8;
+  --on-accent-color: #ffffff;
+  --card-shadow: 0 8px 20px rgba(90,100,120,0.1);
+  --chart-grid-color: color-mix(in srgb, #33394a 15%, transparent);
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}

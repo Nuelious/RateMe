@@ -1,0 +1,79 @@
+/* settings.css — shared base layout + the slide-out settings panel UI. */
+@import url('base.css');
+
+.settings-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+  opacity: 0; pointer-events: none; transition: opacity 0.25s ease; z-index: 90;
+}
+.settings-overlay.open { opacity: 1; pointer-events: auto; }
+
+.settings-panel {
+  position: fixed; top: 0; right: 0; height: 100%; width: 340px; max-width: 88vw;
+  background: var(--card-bg); border-left: 1px solid var(--border-color);
+  transform: translateX(100%); transition: transform 0.3s ease; z-index: 100;
+  display: flex; flex-direction: column;
+}
+.settings-panel.open { transform: translateX(0); }
+
+.settings-panel-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 20px; border-bottom: 1px solid var(--border-color);
+}
+.settings-panel-header h2 { margin: 0; font-size: 1.1rem; }
+
+.settings-panel-body { padding: 18px 20px; overflow-y: auto; flex: 1; }
+.settings-block { margin-bottom: 26px; }
+.settings-block h3 { margin: 0 0 12px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+
+.swatch-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.swatch-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  background: var(--surface-color); border: 1.5px solid var(--border-color);
+  border-radius: 12px; padding: 10px 6px; transition: all 0.2s ease;
+}
+.swatch-btn:hover { transform: translateY(-2px); }
+.swatch-btn.active { border-color: var(--accent-color); box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent-color) 30%, transparent); }
+.swatch-label { font-size: 0.72rem; text-align: center; color: var(--text-color); }
+
+.swatch-preview {
+  width: 100%; height: 34px; border-radius: 8px;
+  background: linear-gradient(135deg, var(--preview-a, #888), var(--preview-b, #444));
+}
+.swatch-card-preview {
+  width: 100%; height: 34px; border-radius: 8px; background: var(--surface-color);
+  border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center;
+  font-size: 0.65rem; color: var(--muted-text);
+}
+
+/* Per-theme preview gradients so swatches look distinct even before selection */
+.theme-swatch-dark { --preview-a: #2b2f3a; --preview-b: #111319; }
+.theme-swatch-light { --preview-a: #f5f5f7; --preview-b: #dcdce2; }
+.theme-swatch-neon { --preview-a: #ff00e5; --preview-b: #00fff2; }
+.theme-swatch-space { --preview-a: #1a1442; --preview-b: #05030f; }
+.theme-swatch-night { --preview-a: #10162b; --preview-b: #030512; }
+.theme-swatch-sunny { --preview-a: #ffd166; --preview-b: #ff9f1c; }
+.theme-swatch-cloudy { --preview-a: #cfd8e3; --preview-b: #8a97a8; }
+.theme-swatch-aurora { --preview-a: #00ffb3; --preview-b: #7b2ff7; }
+.theme-swatch-desert { --preview-a: #edc9a3; --preview-b: #c98a4b; }
+.theme-swatch-rain { --preview-a: #5c7a8a; --preview-b: #1e2c33; }
+.theme-swatch-forest { --preview-a: #4f7942; --preview-b: #1f3d1a; }
+.theme-swatch-ocean { --preview-a: #2e86ab; --preview-b: #073b4c; }
+.theme-swatch-sunset { --preview-a: #ff6b6b; --preview-b: #f9844a; }
+.theme-swatch-winter { --preview-a: #dff2f9; --preview-b: #93c5e0; }
+.theme-swatch-candy { --preview-a: #ff9fe5; --preview-b: #b388ff; }
+.theme-swatch-mono { --preview-a: #666; --preview-b: #111; }
+.theme-swatch-cyber { --preview-a: #ff00aa; --preview-b: #00e5ff; }
+.theme-swatch-vintage { --preview-a: #d8c3a5; --preview-b: #8b6b4a; }
+.theme-swatch-lavender { --preview-a: #c8a8e9; --preview-b: #8760b3; }
+.theme-swatch-fire { --preview-a: #ff5e00; --preview-b: #7a0c00; }
+.theme-swatch-gold { --preview-a: #ffe38a; --preview-b: #b8860b; }
+.theme-swatch-matrix { --preview-a: #00ff41; --preview-b: #001a05; }
+.theme-swatch-rose { --preview-a: #ffb6c1; --preview-b: #c2185b; }
+
+.settings-inline-form { display: flex; gap: 10px; }
+.settings-inline-form input { flex: 1; }
+
+.danger-zone { border-color: #e5484d55; }
+.danger-zone h3 { color: #e5484d; }
+
+.settings-page .themed-card { max-width: 640px; margin-left: auto; margin-right: auto; }

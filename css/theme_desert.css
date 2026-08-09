@@ -1,0 +1,19 @@
+/* theme_desert.css — desert theme */
+:root, [data-theme="desert"] {
+  --bg-color: #fbf1e2;
+  --surface-color: #f4dfbd;
+  --surface-hover: #efd4a5;
+  --card-bg: #fdf6ea;
+  --border-color: #e0b988;
+  --text-color: #4a2f14;
+  --muted-text: #8a6339;
+  --accent-color: #c98a4b;
+  --accent-color-2: #e07a5f;
+  --header-bg: rgba(251,241,226,0.85);
+  --input-bg: #f7e9d2;
+  --on-accent-color: #fff;
+  --card-shadow: 0 8px 20px rgba(180,120,60,0.2);
+  --chart-grid-color: color-mix(in srgb, #4a2f14 15%, transparent);
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}

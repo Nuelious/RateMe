@@ -1,0 +1,19 @@
+/* theme_cyber.css — cyber theme */
+:root, [data-theme="cyber"] {
+  --bg-color: #08010f;
+  --surface-color: #140425;
+  --surface-hover: #1e0838;
+  --card-bg: #10021e;
+  --border-color: #3d0f5c;
+  --text-color: #f0d9ff;
+  --muted-text: #b06be0;
+  --accent-color: #ff00aa;
+  --accent-color-2: #00e5ff;
+  --header-bg: rgba(8,1,15,0.85);
+  --input-bg: #180530;
+  --on-accent-color: #08010f;
+  --card-shadow: 0 0 26px rgba(255,0,170,0.3);
+  --chart-grid-color: color-mix(in srgb, #f0d9ff 15%, transparent);
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}

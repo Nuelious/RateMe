@@ -1,0 +1,19 @@
+/* theme_gold.css — gold theme */
+:root, [data-theme="gold"] {
+  --bg-color: #1a1608;
+  --surface-color: #2b2410;
+  --surface-hover: #3a3115;
+  --card-bg: #221c0c;
+  --border-color: #5c4d1c;
+  --text-color: #fff3d1;
+  --muted-text: #d4b96a;
+  --accent-color: #d4af37;
+  --accent-color-2: #ffe38a;
+  --header-bg: rgba(26,22,8,0.85);
+  --input-bg: #332a10;
+  --on-accent-color: #1a1608;
+  --card-shadow: 0 8px 24px rgba(212,175,55,0.3);
+  --chart-grid-color: color-mix(in srgb, #fff3d1 15%, transparent);
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}

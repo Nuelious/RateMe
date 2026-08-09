@@ -1,0 +1,16 @@
+/* card_sharp.css — hard, angular edges everywhere, no border radius */
+.themed-card, .rate-trait-card, .auth-card {
+  background: var(--card-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 0;
+  box-shadow: 6px 6px 0 var(--accent-color);
+}
+.trait-card {
+  border-radius: 0;
+  border: 2px solid var(--border-color);
+}
+.trait-card.selected {
+  box-shadow: 4px 4px 0 var(--accent-color);
+}
+.btn { border-radius: 0 !important; }
+.top-trait-item, .rating-entry, .review-item, .custom-trait-chip { border-radius: 0; }

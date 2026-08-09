@@ -1,0 +1,19 @@
+/* theme_sunset.css — sunset theme */
+:root, [data-theme="sunset"] {
+  --bg-color: #25102b;
+  --surface-color: #3a1638;
+  --surface-hover: #4a1c44;
+  --card-bg: #301333;
+  --border-color: #5c2450;
+  --text-color: #ffe8e0;
+  --muted-text: #e0a5a0;
+  --accent-color: #ff6b6b;
+  --accent-color-2: #f9844a;
+  --header-bg: rgba(37,16,43,0.85);
+  --input-bg: #411a3d;
+  --on-accent-color: #fff;
+  --card-shadow: 0 8px 26px rgba(255,107,107,0.25);
+  --chart-grid-color: color-mix(in srgb, #ffe8e0 15%, transparent);
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}

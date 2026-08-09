@@ -1,0 +1,30 @@
+/* card_holo.css — holographic / iridescent sheen effect using a multi-stop
+   diagonal rainbow gradient blended subtly over the card. */
+.themed-card, .rate-trait-card, .auth-card {
+  position: relative;
+  background:
+    linear-gradient(120deg,
+      rgba(255,0,150,0.10) 0%,
+      rgba(0,229,255,0.10) 25%,
+      rgba(160,0,255,0.10) 50%,
+      rgba(0,255,170,0.10) 75%,
+      rgba(255,200,0,0.10) 100%),
+    var(--card-bg);
+  background-size: 250% 250%;
+  border: 1px solid color-mix(in srgb, var(--accent-color) 25%, var(--border-color));
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  animation: holoShift 8s ease infinite;
+}
+@keyframes holoShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.trait-card {
+  border-radius: 14px;
+  background:
+    linear-gradient(120deg, rgba(255,0,150,0.08), rgba(0,229,255,0.08), rgba(160,0,255,0.08)),
+    var(--surface-color);
+  background-size: 200% 200%;
+}

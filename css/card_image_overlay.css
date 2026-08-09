@@ -1,0 +1,21 @@
+/* card_image_overlay.css — dark vignette gradient overlay treatment,
+   evokes a photo/background-image card even though no image is used */
+.themed-card, .rate-trait-card, .auth-card {
+  background:
+    radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--accent-color) 25%, transparent), transparent 60%),
+    linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.55) 100%),
+    var(--card-bg);
+  border-radius: 18px;
+  border: none;
+  color: var(--text-color);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+.themed-card h3, .rate-trait-card h2 {
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+.trait-card {
+  background:
+    radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--accent-color) 18%, transparent), transparent 70%),
+    var(--surface-color);
+  border-radius: 14px;
+}

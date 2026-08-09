@@ -1,0 +1,19 @@
+/* theme_light.css — light theme */
+:root, [data-theme="light"] {
+  --bg-color: #f7f8fb;
+  --surface-color: #ffffff;
+  --surface-hover: #eef0f6;
+  --card-bg: #ffffff;
+  --border-color: #e2e5ee;
+  --text-color: #1c1e26;
+  --muted-text: #6b7280;
+  --accent-color: #6c5ce7;
+  --accent-color-2: #00b894;
+  --header-bg: rgba(247,248,251,0.85);
+  --input-bg: #f2f3f8;
+  --on-accent-color: #ffffff;
+  --card-shadow: 0 8px 24px rgba(30,30,60,0.08);
+  --chart-grid-color: color-mix(in srgb, #1c1e26 15%, transparent);
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}

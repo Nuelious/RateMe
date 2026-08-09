@@ -1,0 +1,19 @@
+/* theme_forest.css — forest theme */
+:root, [data-theme="forest"] {
+  --bg-color: #0f1c10;
+  --surface-color: #182a19;
+  --surface-hover: #20361f;
+  --card-bg: #132213;
+  --border-color: #2c4a2a;
+  --text-color: #e2f0e0;
+  --muted-text: #8bab84;
+  --accent-color: #4f9d3d;
+  --accent-color-2: #a3d977;
+  --header-bg: rgba(15,28,16,0.85);
+  --input-bg: #1a2e19;
+  --on-accent-color: #fff;
+  --card-shadow: 0 8px 24px rgba(0,30,0,0.3);
+  --chart-grid-color: color-mix(in srgb, #e2f0e0 15%, transparent);
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}

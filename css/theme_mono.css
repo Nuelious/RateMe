@@ -1,0 +1,19 @@
+/* theme_mono.css — mono theme */
+:root, [data-theme="mono"] {
+  --bg-color: #141414;
+  --surface-color: #1e1e1e;
+  --surface-hover: #292929;
+  --card-bg: #1a1a1a;
+  --border-color: #333333;
+  --text-color: #f0f0f0;
+  --muted-text: #9a9a9a;
+  --accent-color: #ffffff;
+  --accent-color-2: #8a8a8a;
+  --header-bg: rgba(20,20,20,0.85);
+  --input-bg: #222222;
+  --on-accent-color: #111111;
+  --card-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  --chart-grid-color: color-mix(in srgb, #f0f0f0 15%, transparent);
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}

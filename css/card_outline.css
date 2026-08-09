@@ -1,0 +1,14 @@
+/* card_outline.css — transparent fill, bold outline, no shadow */
+.themed-card, .rate-trait-card, .auth-card {
+  background: transparent;
+  border: 2px solid var(--accent-color);
+  border-radius: 14px;
+  box-shadow: none;
+}
+.trait-card {
+  background: transparent;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: none;
+}
+.trait-card.selected { border-color: var(--accent-color); }

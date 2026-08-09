@@ -1,0 +1,16 @@
+/* card_minimal.css — no border, no shadow, relies purely on spacing/contrast */
+.themed-card, .rate-trait-card, .auth-card {
+  background: var(--card-bg);
+  border: none;
+  border-radius: 4px;
+  box-shadow: none;
+  padding: 26px 20px;
+}
+.trait-card {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--border-color);
+  border-radius: 0;
+  box-shadow: none;
+}
+.trait-card.selected { border-bottom-color: var(--accent-color); }

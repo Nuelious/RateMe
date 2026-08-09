@@ -1,0 +1,19 @@
+/* theme_matrix.css — matrix theme */
+:root, [data-theme="matrix"] {
+  --bg-color: #000502;
+  --surface-color: #001a05;
+  --surface-hover: #002b08;
+  --card-bg: #000f03;
+  --border-color: #00521a;
+  --text-color: #c8ffcf;
+  --muted-text: #4dbb63;
+  --accent-color: #00ff41;
+  --accent-color-2: #00cc33;
+  --header-bg: rgba(0,5,2,0.85);
+  --input-bg: #002206;
+  --on-accent-color: #000502;
+  --card-shadow: 0 0 22px rgba(0,255,65,0.3);
+  --chart-grid-color: color-mix(in srgb, #c8ffcf 15%, transparent);
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}

@@ -1,0 +1,25 @@
+/* card_parallax.css — subtle 3D depth via layered shadows + hover lift,
+   simulating a parallax/tilt feel without requiring JS. */
+.themed-card, .rate-trait-card, .auth-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow:
+    0 2px 4px rgba(0,0,0,0.1),
+    0 8px 16px rgba(0,0,0,0.12),
+    0 20px 32px rgba(0,0,0,0.1);
+  transform: perspective(800px) rotateX(0deg);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.themed-card:hover, .rate-trait-card:hover {
+  transform: perspective(800px) rotateX(2deg) translateY(-6px);
+  box-shadow:
+    0 4px 8px rgba(0,0,0,0.12),
+    0 16px 28px rgba(0,0,0,0.16),
+    0 32px 48px rgba(0,0,0,0.14);
+}
+.trait-card {
+  border-radius: 14px;
+  transition: transform 0.25s ease;
+}
+.trait-card:hover { transform: perspective(600px) rotateX(4deg) translateY(-4px); }

@@ -1,0 +1,19 @@
+/* card_flat.css — flat design: no shadow, no gradients, thin border, sharp-ish corners */
+.themed-card, .rate-trait-card, .auth-card {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-shadow: none;
+}
+.trait-card {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-shadow: none;
+}
+.trait-card.selected {
+  background: var(--accent-color);
+  color: var(--on-accent-color);
+  border-color: var(--accent-color);
+}
+.trait-card.selected i { color: var(--on-accent-color); }

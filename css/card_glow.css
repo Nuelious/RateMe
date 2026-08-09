@@ -1,0 +1,22 @@
+/* card_glow.css — ambient colored glow radiating from the card edges */
+.themed-card, .rate-trait-card, .auth-card {
+  background: var(--card-bg);
+  border: 1px solid color-mix(in srgb, var(--accent-color) 40%, var(--border-color));
+  border-radius: 18px;
+  box-shadow:
+    0 0 24px color-mix(in srgb, var(--accent-color) 35%, transparent),
+    0 0 60px color-mix(in srgb, var(--accent-color) 15%, transparent);
+  transition: box-shadow 0.3s ease;
+}
+.themed-card:hover, .rate-trait-card:hover {
+  box-shadow:
+    0 0 32px color-mix(in srgb, var(--accent-color) 50%, transparent),
+    0 0 80px color-mix(in srgb, var(--accent-color) 25%, transparent);
+}
+.trait-card {
+  border-radius: 14px;
+  box-shadow: 0 0 12px color-mix(in srgb, var(--accent-color) 15%, transparent);
+}
+.trait-card.selected {
+  box-shadow: 0 0 20px color-mix(in srgb, var(--accent-color) 55%, transparent);
+}

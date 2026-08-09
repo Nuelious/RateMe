@@ -1,0 +1,19 @@
+/* theme_candy.css — candy theme */
+:root, [data-theme="candy"] {
+  --bg-color: #fff0f9;
+  --surface-color: #ffe0f2;
+  --surface-hover: #ffd0ec;
+  --card-bg: #fff7fb;
+  --border-color: #ffb6e2;
+  --text-color: #5a1140;
+  --muted-text: #a34e82;
+  --accent-color: #ff5eb6;
+  --accent-color-2: #b388ff;
+  --header-bg: rgba(255,240,249,0.85);
+  --input-bg: #ffe8f5;
+  --on-accent-color: #fff;
+  --card-shadow: 0 8px 22px rgba(255,94,182,0.25);
+  --chart-grid-color: color-mix(in srgb, #5a1140 15%, transparent);
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}

@@ -1,0 +1,19 @@
+/* theme_rose.css — rose theme */
+:root, [data-theme="rose"] {
+  --bg-color: #1f0a12;
+  --surface-color: #331120;
+  --surface-hover: #44182c;
+  --card-bg: #280d19;
+  --border-color: #5c2438;
+  --text-color: #ffe0ea;
+  --muted-text: #dd93ac;
+  --accent-color: #e0517a;
+  --accent-color-2: #ffb6c1;
+  --header-bg: rgba(31,10,18,0.85);
+  --input-bg: #3a1424;
+  --on-accent-color: #fff;
+  --card-shadow: 0 8px 24px rgba(224,81,122,0.25);
+  --chart-grid-color: color-mix(in srgb, #ffe0ea 15%, transparent);
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}

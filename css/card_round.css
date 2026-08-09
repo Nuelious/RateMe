@@ -1,0 +1,12 @@
+/* card_round.css — heavily rounded, pill-like corners on everything */
+.themed-card, .rate-trait-card, .auth-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 32px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+.trait-card {
+  border-radius: 999px;
+  padding: 18px 12px;
+}
+.top-trait-item, .rating-entry, .review-item { border-radius: 999px; padding-left: 18px; }

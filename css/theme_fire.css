@@ -1,0 +1,19 @@
+/* theme_fire.css — fire theme */
+:root, [data-theme="fire"] {
+  --bg-color: #170502;
+  --surface-color: #2b0a03;
+  --surface-hover: #3d0f04;
+  --card-bg: #210702;
+  --border-color: #5c1a06;
+  --text-color: #ffe8d9;
+  --muted-text: #e0977a;
+  --accent-color: #ff5e00;
+  --accent-color-2: #ffc300;
+  --header-bg: rgba(23,5,2,0.85);
+  --input-bg: #330c04;
+  --on-accent-color: #fff;
+  --card-shadow: 0 8px 26px rgba(255,94,0,0.3);
+  --chart-grid-color: color-mix(in srgb, #ffe8d9 15%, transparent);
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}

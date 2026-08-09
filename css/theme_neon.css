@@ -1,0 +1,19 @@
+/* theme_neon.css — neon theme */
+:root, [data-theme="neon"] {
+  --bg-color: #0a0014;
+  --surface-color: #160029;
+  --surface-hover: #220a3d;
+  --card-bg: #150125;
+  --border-color: #4d0f7a;
+  --text-color: #f5e6ff;
+  --muted-text: #c58bff;
+  --accent-color: #ff00e5;
+  --accent-color-2: #00fff2;
+  --header-bg: rgba(10,0,20,0.85);
+  --input-bg: #1c0630;
+  --on-accent-color: #0a0014;
+  --card-shadow: 0 0 24px rgba(255,0,229,0.35);
+  --chart-grid-color: color-mix(in srgb, #f5e6ff 15%, transparent);
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}

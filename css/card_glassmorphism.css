@@ -1,0 +1,29 @@
+/* card_glassmorphism.css — heavier glassmorphism: blur, translucency, glowing gradient edge */
+.themed-card, .rate-trait-card, .auth-card {
+  background: color-mix(in srgb, var(--card-bg) 55%, transparent);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid transparent;
+  border-radius: 22px;
+  position: relative;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+.themed-card::before, .rate-trait-card::before, .auth-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--accent-color), transparent 40%, var(--accent-color-2));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.5;
+}
+.trait-card {
+  background: color-mix(in srgb, var(--surface-color) 50%, transparent);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--accent-color) 25%, transparent);
+}

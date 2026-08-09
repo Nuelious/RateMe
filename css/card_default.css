@@ -1,0 +1,6 @@
+/* card_default.css — simple, clean rounded card with subtle shadow */
+.themed-card, .rate-trait-card, .auth-card {
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+}
+.trait-card { border-radius: 14px; }

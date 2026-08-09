@@ -1,0 +1,19 @@
+/* theme_space.css — space theme */
+:root, [data-theme="space"] {
+  --bg-color: #05030f;
+  --surface-color: #0f0c2b;
+  --surface-hover: #171240;
+  --card-bg: #0d0a24;
+  --border-color: #241f52;
+  --text-color: #e6e6ff;
+  --muted-text: #8f8ac2;
+  --accent-color: #7b5cff;
+  --accent-color-2: #00d4ff;
+  --header-bg: rgba(5,3,15,0.85);
+  --input-bg: #120e33;
+  --on-accent-color: #ffffff;
+  --card-shadow: 0 8px 30px rgba(123,92,255,0.25);
+  --chart-grid-color: color-mix(in srgb, #e6e6ff 15%, transparent);
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}

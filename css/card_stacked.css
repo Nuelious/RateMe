@@ -1,0 +1,30 @@
+/* card_stacked.css — layered "stack of papers" illusion using pseudo-element shadows */
+.themed-card, .rate-trait-card, .auth-card {
+  position: relative;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  margin-bottom: 32px;
+}
+.themed-card::before, .rate-trait-card::before, .auth-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  transform: rotate(-2deg) translateY(4px);
+  z-index: -1;
+}
+.themed-card::after, .rate-trait-card::after, .auth-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--surface-hover);
+  border: 1px solid var(--border-color);
+  transform: rotate(2deg) translateY(8px);
+  z-index: -2;
+}
+.trait-card { border-radius: 12px; }

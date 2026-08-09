@@ -1,0 +1,41 @@
+/* card_ribbon.css — adds a folded-corner ribbon accent to cards */
+.themed-card, .auth-card {
+  position: relative;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  overflow: hidden;
+}
+.themed-card::after, .auth-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 34px 34px 0;
+  border-color: transparent var(--accent-color) transparent transparent;
+}
+.rate-trait-card {
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+.trait-card { border-radius: 12px; }
+.trait-card.selected { position: relative; }
+.trait-card.selected::after {
+  content: '\2713';
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 18px;
+  height: 18px;
+  background: var(--accent-color);
+  color: var(--on-accent-color);
+  font-size: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 12px 0 8px;
+}

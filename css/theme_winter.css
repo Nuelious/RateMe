@@ -1,0 +1,19 @@
+/* theme_winter.css — winter theme */
+:root, [data-theme="winter"] {
+  --bg-color: #eef7fb;
+  --surface-color: #ffffff;
+  --surface-hover: #e2f1f8;
+  --card-bg: #ffffff;
+  --border-color: #c9e4f0;
+  --text-color: #1f2f3a;
+  --muted-text: #5f7d8c;
+  --accent-color: #3a8fb7;
+  --accent-color-2: #93c5e0;
+  --header-bg: rgba(238,247,251,0.85);
+  --input-bg: #f0f9fc;
+  --on-accent-color: #fff;
+  --card-shadow: 0 8px 20px rgba(58,143,183,0.15);
+  --chart-grid-color: color-mix(in srgb, #1f2f3a 15%, transparent);
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}

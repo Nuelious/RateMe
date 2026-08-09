@@ -1,0 +1,19 @@
+/* theme_sunny.css — sunny theme */
+:root, [data-theme="sunny"] {
+  --bg-color: #fff8e6;
+  --surface-color: #ffefc2;
+  --surface-hover: #ffe6a3;
+  --card-bg: #fffbef;
+  --border-color: #ffd873;
+  --text-color: #4a3300;
+  --muted-text: #8a6d1f;
+  --accent-color: #ff9f1c;
+  --accent-color-2: #ff6b6b;
+  --header-bg: rgba(255,248,230,0.85);
+  --input-bg: #fff3d1;
+  --on-accent-color: #3a2600;
+  --card-shadow: 0 8px 22px rgba(255,159,28,0.25);
+  --chart-grid-color: color-mix(in srgb, #4a3300 15%, transparent);
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}

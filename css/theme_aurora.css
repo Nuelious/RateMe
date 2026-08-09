@@ -1,0 +1,19 @@
+/* theme_aurora.css — aurora theme */
+:root, [data-theme="aurora"] {
+  --bg-color: #050a14;
+  --surface-color: #0d1a26;
+  --surface-hover: #122636;
+  --card-bg: #0a1622;
+  --border-color: #1b3a4a;
+  --text-color: #e2fff5;
+  --muted-text: #7fd8c4;
+  --accent-color: #00ffb3;
+  --accent-color-2: #7b2ff7;
+  --header-bg: rgba(5,10,20,0.85);
+  --input-bg: #0f2130;
+  --on-accent-color: #04150e;
+  --card-shadow: 0 8px 30px rgba(0,255,179,0.2);
+  --chart-grid-color: color-mix(in srgb, #e2fff5 15%, transparent);
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}

@@ -1,0 +1,19 @@
+/* theme_ocean.css — ocean theme */
+:root, [data-theme="ocean"] {
+  --bg-color: #04222e;
+  --surface-color: #083344;
+  --surface-hover: #0c4258;
+  --card-bg: #062a38;
+  --border-color: #155263;
+  --text-color: #dff6fb;
+  --muted-text: #7fc4d6;
+  --accent-color: #2e86ab;
+  --accent-color-2: #4cc9f0;
+  --header-bg: rgba(4,34,46,0.85);
+  --input-bg: #0a3949;
+  --on-accent-color: #fff;
+  --card-shadow: 0 8px 24px rgba(0,80,110,0.3);
+  --chart-grid-color: color-mix(in srgb, #dff6fb 15%, transparent);
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}

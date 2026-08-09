@@ -1,0 +1,19 @@
+/* theme_rain.css — rain theme */
+:root, [data-theme="rain"] {
+  --bg-color: #101c22;
+  --surface-color: #17262e;
+  --surface-hover: #1f323c;
+  --card-bg: #142129;
+  --border-color: #2b3f49;
+  --text-color: #dbeaf0;
+  --muted-text: #7fa0ac;
+  --accent-color: #4895ef;
+  --accent-color-2: #5c7a8a;
+  --header-bg: rgba(16,28,34,0.85);
+  --input-bg: #1a2830;
+  --on-accent-color: #fff;
+  --card-shadow: 0 8px 24px rgba(0,20,30,0.4);
+  --chart-grid-color: color-mix(in srgb, #dbeaf0 15%, transparent);
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}

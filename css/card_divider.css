@@ -1,0 +1,22 @@
+/* card_divider.css — adds a strong divider line under headings inside cards */
+.themed-card, .rate-trait-card, .auth-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+.themed-card h3 {
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  border-bottom: 2px solid var(--accent-color);
+}
+.auth-form h2 {
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  border-bottom: 2px solid var(--accent-color);
+}
+.trait-card {
+  border-radius: 8px;
+  border-bottom: 3px solid var(--border-color);
+}
+.trait-card.selected { border-bottom-color: var(--accent-color); }
