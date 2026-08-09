@@ -1,5 +1,5 @@
-import { supabase, getCurrentUser, ensureUserProfile, getUserProfile } from './supabaseClient.js';
-import { showToast, setButtonLoading, fireConfetti, getQueryParam, renderSocialShare } from './ui.js';
+import { supabase, getCurrentUser } from './supabaseClient.js';
+import { showToast, setButtonLoading, fireConfetti, getQueryParam } from './ui.js';
 
 const PREDEFINED_ICONS = {
   confident: 'fa-crown', funny: 'fa-face-laugh-beam', kind: 'fa-heart',
@@ -17,71 +17,94 @@ let isAnonymous = true;
 let raterName = '';
 
 export async function initRateFlow() {
-  const shareCode = getQueryParam('code');
   const loadingEl = document.getElementById('rate-loading');
   const errorEl = document.getElementById('rate-error');
   const flowEl = document.getElementById('rate-flow');
-  const successEl = document.getElementById('rate-success');
   const authGateEl = document.getElementById('rate-auth-gate');
 
-  if (!shareCode) {
+  try {
+    const shareCode = getQueryParam('code');
+
+    if (!shareCode) {
+      hide(loadingEl);
+      show(errorEl);
+      setErrorMessage('No profile code provided. Ask your friend for their share link.');
+      return;
+    }
+
+    // Fetch profile (public read, no auth needed)
+    const { data, error } = await supabase
+      .from('profiles')
+      .select('id, name, traits, share_code, username')
+      .eq('share_code', shareCode)
+      .maybeSingle();
+
+    hide(loadingEl);
+
+    if (error || !data) {
+      show(errorEl);
+      setErrorMessage("This profile doesn't exist or the link is invalid.");
+      console.error('Supabase profile error:', error);
+      return;
+    }
+
+    profile = data;
+
+    // Check auth
+    const user = await getCurrentUser();
+
+    if (!user) {
+      // Show auth gate if it exists in HTML
+      if (authGateEl) {
+        show(authGateEl);
+        initAuthGate(authGateEl, flowEl);
+      } else {
+        // Fallback if HTML wasn't updated: just show the flow anyway
+        show(flowEl);
+        renderStep();
+        wireControls();
+      }
+      return;
+    }
+
+    // User is logged in — show rating flow
+    show(flowEl);
+    renderStep();
+    wireControls();
+
+  } catch (err) {
+    // CRITICAL: always hide loader and show what broke
+    hide(loadingEl);
     show(errorEl);
-    setErrorMessage('No profile code provided. Ask your friend for their share link.');
-    return;
+    setErrorMessage('Error: ' + (err?.message || String(err)));
+    console.error('initRateFlow crashed:', err);
   }
-
-  const { data, error } = await supabase
-    .from('profiles')
-    .select('id, name, traits, share_code, username')
-    .eq('share_code', shareCode)
-    .maybeSingle();
-
-  hide(loadingEl);
-
-  if (error || !data) {
-    show(errorEl);
-    setErrorMessage("This profile doesn't exist or the link is invalid.");
-    return;
-  }
-
-  profile = data;
-
-  // AUTH GATE: require login before rating
-  const user = await getCurrentUser();
-  if (!user) {
-    show(authGateEl);
-    initAuthGate(authGateEl, flowEl);
-    return;
-  }
-
-  ratings = {};
-  currentIndex = 0;
-
-  document.getElementById('rate-target-name').textContent = profile.name;
-  show(flowEl);
-  renderStep();
-  wireControls();
 }
 
-fufunction initAuthGate(authEl, flowEl) {
+function setErrorMessage(msg) {
+  const el = document.getElementById('rate-error-message');
+  if (el) el.textContent = msg;
+}
+
+function initAuthGate(authEl, flowEl) {
   const loginForm = authEl.querySelector('#rate-login-form');
   const signupForm = authEl.querySelector('#rate-signup-form');
   const showSignup = authEl.querySelector('#rate-show-signup');
   const showLogin = authEl.querySelector('#rate-show-login');
 
   showSignup?.addEventListener('click', () => {
-    loginForm.classList.add('hidden');
-    signupForm.classList.remove('hidden');
+    loginForm?.classList.add('hidden');
+    signupForm?.classList.remove('hidden');
   });
   showLogin?.addEventListener('click', () => {
-    signupForm.classList.add('hidden');
-    loginForm.classList.remove('hidden');
+    signupForm?.classList.add('hidden');
+    loginForm?.classList.remove('hidden');
   });
 
   loginForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const email = authEl.querySelector('#rate-login-email').value.trim();
-    const pass = authEl.querySelector('#rate-login-password').value;
+    const email = authEl.querySelector('#rate-login-email')?.value.trim();
+    const pass = authEl.querySelector('#rate-login-password')?.value;
     const btn = loginForm.querySelector('button[type="submit"]');
     setButtonLoading(btn, true, 'Logging in…');
 
@@ -93,24 +116,17 @@ fufunction initAuthGate(authEl, flowEl) {
       return;
     }
 
-    // Ensure profile row exists (for users who signed up with email confirmation ON)
-    const existing = await getUserProfile(data.user.id);
-    if (!existing) {
-      const fallback = 'user_' + Math.random().toString(36).slice(2, 8);
-      await supabase.from('user_profiles').insert({ id: data.user.id, username: fallback });
-    }
-
     hide(authEl);
     show(flowEl);
-    initRateFlow(); // restart to load authenticated state
+    initRateFlow(); // restart now that we're logged in
   });
 
   signupForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const email = authEl.querySelector('#rate-signup-email').value.trim();
-    const pass = authEl.querySelector('#rate-signup-password').value;
-    const confirm = authEl.querySelector('#rate-signup-password-confirm').value;
-    const username = authEl.querySelector('#rate-signup-username').value.trim();
+    const email = authEl.querySelector('#rate-signup-email')?.value.trim();
+    const pass = authEl.querySelector('#rate-signup-password')?.value;
+    const confirm = authEl.querySelector('#rate-signup-password-confirm')?.value;
+    const username = authEl.querySelector('#rate-signup-username')?.value.trim();
     const btn = signupForm.querySelector('button[type="submit"]');
 
     if (pass !== confirm) {
@@ -131,17 +147,16 @@ fufunction initAuthGate(authEl, flowEl) {
       return;
     }
 
-    // If email confirmation is ON, we can't insert yet (no session).
-    // Store username and ask them to log in.
+    // Email confirmation ON = no session yet
     if (!data.session) {
       localStorage.setItem('pending_username', username);
       showToast('Check your email to confirm, then log in here.', 'info', 6000);
-      signupForm.classList.add('hidden');
+      signupForm?.classList.add('hidden');
       loginForm?.classList.remove('hidden');
       return;
     }
 
-    // Immediate session — create row now
+    // Email confirmation OFF = create profile immediately
     const { error: profErr } = await supabase
       .from('user_profiles')
       .insert({ id: data.user.id, username });
@@ -158,12 +173,6 @@ fufunction initAuthGate(authEl, flowEl) {
   });
 }
 
-
-function setErrorMessage(msg) {
-  const el = document.getElementById('rate-error-message');
-  if (el) el.textContent = msg;
-}
-
 function wireControls() {
   document.getElementById('rate-prev-btn')?.addEventListener('click', goPrev);
   document.getElementById('rate-next-btn')?.addEventListener('click', goNext);
@@ -173,7 +182,7 @@ function wireControls() {
   const nameField = document.getElementById('rater-name-field');
   anonToggle?.addEventListener('change', () => {
     isAnonymous = anonToggle.checked;
-    nameField.classList.toggle('hidden', isAnonymous);
+    nameField?.classList.toggle('hidden', isAnonymous);
   });
   document.getElementById('rater-name-input')?.addEventListener('input', (e) => {
     raterName = e.target.value.trim();
@@ -280,15 +289,25 @@ async function submitRatings() {
   try {
     const { data: userData } = await supabase.auth.getUser();
     const raterId = userData?.user?.id || null;
-    const userProfile = raterId ? await getUserProfile(raterId) : null;
+
+    // Get username if available
+    let raterUsername = null;
+    if (raterId) {
+      const { data: prof } = await supabase
+        .from('user_profiles')
+        .select('username')
+        .eq('id', raterId)
+        .maybeSingle();
+      raterUsername = prof?.username || null;
+    }
 
     const payload = {
       profile_id: profile.id,
       rater_id: raterId,
       ratings: {
         values: ratings,
-        rater_name: isAnonymous ? null : (raterName || userProfile?.username || null),
-        rater_username: userProfile?.username || null,
+        rater_name: isAnonymous ? null : (raterName || raterUsername || null),
+        rater_username: isAnonymous ? null : raterUsername,
         anonymous: isAnonymous
       }
     };
